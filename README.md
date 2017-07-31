@@ -23,7 +23,7 @@ $ mv /app/userfunc /           # in container
 ### container 外面 curl 該 container 的 8888 port
 
 ```
-curl http://127.0.0.1:8888/specialize
+curl -X POST http://127.0.0.1:8888/specialize
 ```
 
 Console log 出現
@@ -77,7 +77,7 @@ docker run --rm -it -p 8888:8888 py3env:example2
 ### container 外面 curl 該 container 的 8888 port
 
 ```
-curl http://127.0.0.1:8888/specialize
+curl -X POST http://127.0.0.1:8888/specialize
 ```
 
 Console log 出現
@@ -85,6 +85,14 @@ Console log 出現
 ```
 ['/app', '/usr/lib/python35.zip', '/usr/lib/python3.5', '/usr/lib/python3.5/plat-linux', '/usr/lib/python3.5/lib-dynload', '/usr/lib/python3.5/site-packages', '/userfunc']
 172.17.0.1 - - [30/Jul/2017 17:37:18] "POST /specialize HTTP/1.1" 200 -
+```
+
+### 取得 User function output
+
+```
+curl -X GET http://127.0.0.1:8888/
+a: 1
+b: {c: 3, d: 4}
 ```
 
 ## Example3
@@ -105,7 +113,7 @@ docker run --rm -it -p 8888:8888 -v absolute/path/to/userfunc/:/userfunc py3env:
 ### container 外面 curl 該 container 的 8888 port
 
 ```
-curl http://127.0.0.1:8888/specialize
+curl -X POST http://127.0.0.1:8888/specialize
 ```
 
 Console log 出現
@@ -113,4 +121,12 @@ Console log 出現
 ```
 ['/app', '/usr/lib/python35.zip', '/usr/lib/python3.5', '/usr/lib/python3.5/plat-linux', '/usr/lib/python3.5/lib-dynload', '/usr/lib/python3.5/site-packages', '/userfunc']
 172.17.0.1 - - [30/Jul/2017 17:37:18] "POST /specialize HTTP/1.1" 200 -
+```
+
+### 取得 User function output
+
+```
+curl -X GET http://127.0.0.1:8888/
+a: 1
+b: {c: 3, d: 4}
 ```
